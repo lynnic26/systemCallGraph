@@ -1,0 +1,54 @@
+body {
+	margin: 0;
+	width: 100%;
+	font-family: 'MicrosoftYaHei,arial'
+}
+.systemGraph {
+	width: 100%;
+	height: 600px;
+	position: relative;
+}
+#mainCanvas {
+	/*border: 1px solid red;*/
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 1px solid #32C5D2
+}
+.link {
+  stroke: #ef4836;
+  stroke-dasharray: 5;
+  stroke-width: 2;
+  stroke-dashoffset: 0;
+  animation: dash 5s linear infinite;
+  marker-start: url(#markerCircle);
+  marker-end: url(#markerArrow);
+}
+.system-container {
+	fill: url(#dots);
+	stroke: #32C5D2;
+	stroke-width: 2;
+}
+.instance-unit {
+	stroke: #e5e5e5;
+	stroke-width: 2;
+	rx: 5;
+	ry: 5;
+}
+.system-name {
+	fill: none;
+	stroke: black;
+	font-size: 20px;
+	font-family: arial;
+}
+.control-panel {
+	height: 200px;
+	width: 100%;
+	background-color: #bfbfbf;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}

@@ -5,35 +5,14 @@
 	<title>A D3 DEMO</title>
 
 	
-	<style>
-        body {
-        	margin: 0;
-        	width: 100%;
-        	font-family: 'MicrosoftYaHei,arial'
-        }
-        .systemGraph {
-        	width: 100%;
-        	height: 2000px;
-        	position: relative;
-        }
-        #mainCanvas {
-        	/*border: 1px solid red;*/
-        	position: absolute;
-        	top: 0;
-        	left: 50%;
-        	transform: translateX(-50%);
-        }
-        text {
-        	font-family: 'MicrosoftYaHei,arial'
-        }
-	</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
 
     <div class="systemGraph">	
-	    <svg id="mainCanvas" width="900" height="1000">
+	    <svg id="mainCanvas" width="900" height="500">
 	        <defs>
 	            <pattern id="smalldot" patternUnits="userSpaceOnUse" width="5" height="5"> 
 	                <image xlink:href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5'>
@@ -61,172 +40,20 @@
 			        <stop offset="100%" stop-color="#1ba39c" stop-opacity="1"/>
 			    </linearGradient>
 	            <marker id="markerCircle" refX="5" refY="5" markerWidth="7" markerHeight="8">
-	            	<circle cx="5" cy="5" r="2" fill="#3598dc" />
+	            	<circle cx="5" cy="5" r="2" fill="#fff" />
 	            </marker>
 	            <marker id="markerArrow" refX="6" refY="6" markerWidth="12" markerHeight="12" orient="auto">
-	                <path d="M2,2 L10,6 L2,10 L6,6 L2,2" fill="#3598dc" />
+	                <path d="M2,2 L10,6 L2,10 L6,6 L2,2" fill="#fff" />
 	            </marker>
 	        </defs>
 		</svg>
     </div>		
+    <div class="control-panel" >
+    	<input type="button" value="改变数据" id="dataChange">
+    </div>
+
 	<script src="d3.js"></script>
-	<script>
-		var width = 300;	
-		var height = 200;	
-		var rectHeight = 40;
-		var rectWidth = 40;	
-		             
-		var dataSchema = [
-		    {
-                instances: [{
-			           w: 25     
-					}, {
-			           w: 25
-					}, {
-			           w: 25
-					}, { 
-			           w: 25
-					}, {
-					   w: 25
-					}, {
-					   w: 25
-					}
-                ],
-                sysName: 'RIS.RAPP PO 我'
-            },{
-                instances: [{
-			           w: 25     
-					}, {
-			           w: 25
-					}, {
-			           w: 25
-					}, { 
-			           w: 25
-					}, {
-					   w: 25
-					}, {
-					   w: 25
-					}
-                ],
-                sysName: 'RIS.RAPP P1'
-            },{
-                instances: [{
-			           w: 25     
-					}, {
-			           w: 25
-					}, {
-			           w: 25
-					}, { 
-			           w: 25
-					}, {
-					   w: 25
-					}, {
-					   w: 25
-					}
-                ],
-                sysName: 'RIS.RAPP P1'
-            },{
-                instances: [{
-			           w: 25     
-					}, {
-			           w: 25
-					}, {
-			           w: 25
-					}, { 
-			           w: 25
-					}, {
-					   w: 25
-					}, {
-					   w: 25
-					}
-                ],
-                sysName: 'RIS.RAPP P1'
-            }
-		];
-        
-        var mainSvg = d3.select('#mainCanvas');
-
-        var systemGroup = d3.select('#mainCanvas')
-                         .selectAll('g')
-                         .data(dataSchema)
-                         .enter()
-                         .append('g')
-                         .attr('transform', function(system, i) {
-                         	var x = i * 300 % 900;
-                         	var y = Math.floor(i / 3) * 200;
-                            return 'translate(' + x + ' ' + y  + ')';
-                         });
-
-        systemGroup.append('rect')
-                   .attr('x', 0)
-                   .attr('y', 0)
-                   .attr('height', height)
-                   .attr('width', width)
-                   .attr('fill', '#fafafa')
-                   .attr('stroke', '#32C5D2')
-                   .attr('stroke-width', '1')
-                   .attr('fill', 'url(#dots)');
-
-        systemGroup.append('text')
-                   .attr('x', 100)
-                   .attr('y', 30)
-                   .text(function(system, i) {
-                       return system.sysName
-                   })
-                   .attr('fill', '#2c3e50');
-
-        systemGroup.selectAll('rect')
-                         .data(function(system, i) {
-                            return system.instances
-                         })
-                         .enter()
-                         .append('rect')
-                         .attr('y', 50)
-						 .attr('x', function(d, i){
-								return 20 + i * rectWidth;
-						 })
-						 .attr('rx', 5)
-						 .attr('ry', 5)
-						 .attr('width', rectWidth - 15)
-						 .attr('height',rectHeight - 15)
-						 .attr('fill', 'url(#instanceGradient)')
-						 .attr('stroke', '#e5e5e5')
-						 .attr('stroke-width', '2')
-						 .on('click', function(instance, i) {
-						 	 alert(instance.w);
-						 })
-						 .on('mouseover', function(){
-				            d3.select(this)
-				                .attr('fill', 'yellow');
-				         })
-				         .on('mouseout', function(){
-				            d3.select(this)
-				                .transition()
-				                .duration(500)
-				                .attr('fill', '#1bbc9b');
-				         });
-
-		var line = mainSvg.append("line")
-					 .attr("x1", 50)
-					 .attr("y1", 50)
-					 .attr("x2", 200)
-					 .attr("y2", 50)
-					 .attr("stroke","#ef4836")
-					 .attr("stroke-width", 2)
-					 .attr("marker-start","url(#markerCircle)")
-					 .attr("marker-end","url(#markerArrow)");
-
-        var line2 = mainSvg.append("line")
-					 .attr("x1", 50)
-					 .attr("y1", 180)
-					 .attr("x2", 200)
-					 .attr("y2", 50)
-					 .attr("stroke", "#e26a6a")
-					 .attr("stroke-width", 2)
-					 .attr("marker-start","url(#markerCircle)")
-					 .attr("marker-end","url(#markerArrow)");
-
-	</script> 
+    <script src="custom.js"></script>
 
 </body>
 </html>
