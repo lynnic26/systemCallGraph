@@ -288,7 +288,10 @@ var instanceGroup = systemGroup.selectAll('.instance-unit')
 	        })    
 	        .on('mouseout', function() {
                 d3.select(this).style('stroke', 'red');
-	        });
+	        })
+	        .on('click', function() {
+	        	alert('link');
+	        })
     }
     var refreshLinks = function() {
     	var updateLink = mainSvg.selectAll(".link")
