@@ -9,14 +9,15 @@
 </head>
 <body>
 
-
-
+    <div class="banner">
+    	<h1>酒店事业部实例调用监控</h1>
+    </div>
     <div class="systemGraph">	
-	    <svg id="mainCanvas" width="900" height="500">
+	    <svg id="mainCanvas" width="900" height="400">
 	        <defs>
 	            <pattern id="smalldot" patternUnits="userSpaceOnUse" width="5" height="5"> 
 	                <image xlink:href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='5' height='5'>
-					<rect width='5' height='5' fill='#fff'/>
+					<rect width='5' height='5' fill='none'/>
 					<rect width='1' height='1' fill='#ccc'/>
 					</svg>" x="0" y="0" width="5" height="5"> </image> 
 	            </pattern> 
@@ -48,6 +49,18 @@
 	        </defs>
 		</svg>
     </div>		
+	<div class="tip-panel">
+ 	    <p>点击实例可查看详情</p>
+ 	    <p>节点更新时间</p>
+    	<p>每隔5秒推送一次调用数据</p>
+    	<p>最近一次更新时间： 
+    	    <span id="latestUpdateTime">--</span>
+    	</p>
+    	<p>当前存在问题的实例调用:
+    	    <span>5</span>
+    	</p>
+    </div>
+
 <!--     <div class="control-panel" >
     	<input type="button" value="改变数据" id="dataChange">
     </div> -->

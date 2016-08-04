@@ -6,9 +6,11 @@ var rectWidth = 25;
 
 var socket = io();
 socket.on('link change', function(linkInfo) {
+	var ele = document.getElementById('latestUpdateTime').innerText = new Date();
     links = linkInfo;
     console.log(JSON.stringify(links));
     refreshLinks();
+    
 });
 var dataSchema = [
     {
@@ -188,7 +190,7 @@ systemGroup.append('rect')
            .attr('width', width);
 
 systemGroup.append('text')
-           .attr('x', 100)
+           .attr('x', 95)
            .attr('y', 30)
            .attr('class', 'system-name')
            .text(function(system, i) {
