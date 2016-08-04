@@ -28,9 +28,6 @@ var getRandomLinks = function() {
     return links;
 }
 io.on('connection', function(socket) {
-  if(linkInterval) {
-    clearInterval(linkInterval);
-  }
   console.log('user connected');
   var linkInterval = setInterval(function() {
   	  console.log('once' + new Date());
