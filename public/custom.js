@@ -13,99 +13,136 @@ socket.on('link change', function(linkInfo) {
 var dataSchema = [
     {
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'   
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP PO'
     },{
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'     
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP P1'
     },{
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'    
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP P1'
     },{
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'     
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP P1'
     },{
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'     
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP P1'
     },{
         instances: [{
-	           w: 25     
+	           w: 25,
+	           name: 'RS0'    
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, { 
-	           w: 25
+	           w: 25,
+	           name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}, {
-			   w: 25
+			   w: 25,
+			   name: 'RS0'
 			}
         ],
         sysName: 'RIS.RAPP P1'
@@ -167,6 +204,24 @@ var instanceGroup = systemGroup.selectAll('.instance-unit')
                  .append('rect')
                  .attr('class', 'instance-unit');
 
+
+    textGroup = systemGroup.selectAll('.instance-name')
+                .data(function(system, i) {
+                    return system.instances
+                })
+                .enter()
+                .append('text')
+                .attr('class', 'instance-name')
+                .text(function(instance, i) {
+                    return instance.name;
+                })
+                .attr('y', function(d, i) {
+                    return 50 + (Math.ceil((i + 1) / 5) - 1) * (rectHeight + 25) + 40;
+                }) 
+                .attr('x', function(d, i) {
+                    return 40 + i % 5 * (rectWidth + 25);
+                });
+    
     instanceGroup.attr('y', function(d, i){
                         return 50 + (Math.ceil((i + 1) / 5) - 1) * (rectHeight + 25);
                  })
@@ -189,6 +244,8 @@ var instanceGroup = systemGroup.selectAll('.instance-unit')
 		                .duration(500)
 		                .attr('fill', '#1bbc9b');
 		         });
+
+    
 
 
     var getCoordinate = function(system, offset) {
