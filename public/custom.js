@@ -2,7 +2,14 @@ var width = 300;
 var height = 200;	
 var rectHeight = 25;
 var rectWidth = 25;	
-             
+
+
+var socket = io();
+socket.on('link change', function(linkInfo) {
+    links = linkInfo;
+    console.log(JSON.stringify(links));
+    refreshLinks();
+});
 var dataSchema = [
     {
         instances: [{
@@ -118,6 +125,9 @@ var links = [
     },{
     	source: '3, 5',
     	target: '4, 1'
+    },{
+    	source: '6, 6',
+    	target: '1, 1'
     }
 ];
 var mainSvg = d3.select('#mainCanvas');
@@ -229,11 +239,11 @@ var instanceGroup = systemGroup.selectAll('.instance-unit')
 
     refreshLinks();
 
-    var dataChange = document.getElementById('dataChange');
-    dataChange.addEventListener('click', function() {
-        links.push({
-            source: '2,2',
-            target: '6,3'
-        });
-        refreshLinks();
-    }, false);
+    // var dataChange = document.getElementById('dataChange');
+    // dataChange.addEventListener('click', function() {
+    //     links.push({
+    //         source: '2,2',
+    //         target: '6,3'
+    //     });
+    //     refreshLinks();
+    // }, false);

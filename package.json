@@ -1,0 +1,23 @@
+{
+  "name": "d3withdynamicdata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "d3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lynnic26/systemCallGraph.git"
+  },
+  "author": "Lynnic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lynnic26/systemCallGraph/issues"
+  },
+  "homepage": "https://github.com/lynnic26/systemCallGraph#readme",
+  "devDependencies": {
+    "express": "^4.14.0",
+    "socket.io": "^1.4.8"
+  }
+}
