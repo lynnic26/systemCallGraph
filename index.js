@@ -32,7 +32,7 @@ io.on('connection', function(socket) {
   var linkInterval = setInterval(function() {
   	  console.log('once' + new Date());
       io.emit('link change', getRandomLinks());
-  }, 5000);
+  }, 10000);
   socket.on('disconnect', function(){
   	clearInterval(linkInterval);
     console.log('user disconnected');

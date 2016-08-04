@@ -29,7 +29,7 @@ body {
 .link {
   stroke: #ef4836;
   stroke-dasharray: 5;
-  stroke-width: 2;
+  stroke-width: 3;
   stroke-dashoffset: 0;
   animation: dash 5s linear infinite;
   marker-start: url(#markerCircle);

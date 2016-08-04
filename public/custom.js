@@ -282,7 +282,13 @@ var instanceGroup = systemGroup.selectAll('.instance-unit')
 	            var system = end.split(',')[0];
 	            var offset = end.split(',')[1];
 	            return getCoordinate(system, offset)[1];
-	        });    
+	        })
+	        .on('mouseover', function() {
+	        	d3.select(this).style('stroke', '#2c3e50');
+	        })    
+	        .on('mouseout', function() {
+                d3.select(this).style('stroke', 'red');
+	        });
     }
     var refreshLinks = function() {
     	var updateLink = mainSvg.selectAll(".link")
